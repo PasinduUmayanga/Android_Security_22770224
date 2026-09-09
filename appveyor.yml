@@ -19,7 +19,15 @@ install:
         $sdkRoot = "C:\Android\android-sdk"
       }
       if (-not (Test-Path "$sdkRoot\cmdline-tools\latest\bin\sdkmanager.bat")) {
-        throw "Android SDK command-line tools were not found."
+        $toolsZip = "$env:TEMP\android-commandlinetools.zip"
+        $toolsTemp = "$env:TEMP\android-commandlinetools"
+        New-Item -ItemType Directory -Force -Path "$sdkRoot\cmdline-tools" | Out-Null
+        Invoke-WebRequest -Uri "https://dl.google.com/android/repository/commandlinetools-win-11076708_latest.zip" -OutFile $toolsZip
+        if (Test-Path $toolsTemp) {
+          Remove-Item -Recurse -Force $toolsTemp
+        }
+        Expand-Archive -Path $toolsZip -DestinationPath $toolsTemp
+        Move-Item -Force "$toolsTemp\cmdline-tools" "$sdkRoot\cmdline-tools\latest"
       }
       $env:ANDROID_HOME = $sdkRoot
       $env:ANDROID_SDK_ROOT = $sdkRoot
@@ -36,5 +44,6 @@ artifacts:
 
 cache:
   - C:\Users\appveyor\.gradle
-  - C:\Android\android-sdk\build-tools
-  - C:\Android\android-sdk\platforms
+  - C:\android-sdk\build-tools
+  - C:\android-sdk\cmdline-tools
+  - C:\android-sdk\platforms
