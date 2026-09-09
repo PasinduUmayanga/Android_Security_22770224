@@ -1,6 +1,6 @@
 # Android Security 22770224
 
-[![AppVeyor build](https://ci.appveyor.com/api/projects/status/github/PasinduUmayanga/Android_Security_22770224?branch=main&svg=true)](https://ci.appveyor.com/project/PasinduUmayanga/android-security-22770224/branch/main)
+[![Build status](https://ci.appveyor.com/api/projects/status/vbsfxn9lb7b33e8d?svg=true)](https://ci.appveyor.com/project/Mahadenamuththa/android-security-22770224)
 ![Android](https://img.shields.io/badge/platform-Android-3DDC84?logo=android&logoColor=white)
 ![Gradle](https://img.shields.io/badge/build-Gradle-02303A?logo=gradle&logoColor=white)
 ![Java](https://img.shields.io/badge/language-Java-007396?logo=openjdk&logoColor=white)
