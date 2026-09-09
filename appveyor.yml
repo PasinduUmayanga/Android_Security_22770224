@@ -1,0 +1,40 @@
+version: 1.0.{build}
+
+image: Visual Studio 2022
+
+branches:
+  only:
+    - main
+
+environment:
+  JAVA_HOME: C:\Program Files\Java\jdk17
+  ANDROID_HOME: C:\android-sdk
+  ANDROID_SDK_ROOT: C:\android-sdk
+  GRADLE_OPTS: -Dorg.gradle.daemon=false -Dorg.gradle.jvmargs="-Xmx2048m -Dfile.encoding=UTF-8"
+
+install:
+  - ps: |
+      $sdkRoot = $env:ANDROID_HOME
+      if (-not (Test-Path "$sdkRoot\cmdline-tools\latest\bin\sdkmanager.bat") -and (Test-Path "C:\Android\android-sdk\cmdline-tools\latest\bin\sdkmanager.bat")) {
+        $sdkRoot = "C:\Android\android-sdk"
+      }
+      if (-not (Test-Path "$sdkRoot\cmdline-tools\latest\bin\sdkmanager.bat")) {
+        throw "Android SDK command-line tools were not found."
+      }
+      $env:ANDROID_HOME = $sdkRoot
+      $env:ANDROID_SDK_ROOT = $sdkRoot
+      "sdk.dir=$($sdkRoot.Replace('\', '/'))" | Out-File -Encoding ASCII local.properties
+      echo y | & "$sdkRoot\cmdline-tools\latest\bin\sdkmanager.bat" "platforms;android-34" "build-tools;34.0.0" "platform-tools"
+      echo y | & "$sdkRoot\cmdline-tools\latest\bin\sdkmanager.bat" --licenses
+
+build_script:
+  - cmd: gradlew.bat clean testDebugUnitTest assembleDebug
+
+artifacts:
+  - path: app\build\outputs\apk\debug\app-debug.apk
+    name: app-debug
+
+cache:
+  - C:\Users\appveyor\.gradle
+  - C:\Android\android-sdk\build-tools
+  - C:\Android\android-sdk\platforms
