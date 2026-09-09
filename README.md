@@ -6,6 +6,95 @@
 ![Java](https://img.shields.io/badge/language-Java-007396?logo=openjdk&logoColor=white)
 ![License](https://img.shields.io/badge/license-Not%20specified-lightgrey)
 
+## Tools Required
+
+Install these tools before opening or running the project:
+
+- Android Studio
+- JDK 17 or a compatible JDK for Android Gradle Plugin 8.1.2
+- Android SDK Platform 34
+- Android SDK Build Tools 34.0.0
+- Android Emulator or a physical Android device
+- Git
+
+Android Studio usually installs the Android SDK, SDK Platform, Build Tools, emulator, and Gradle integration automatically. The project also includes the Gradle wrapper, so a separate Gradle installation is not required.
+
+## Installation and Setup
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/PasinduUmayanga/Android_Security_22770224.git
+cd Android_Security_22770224
+```
+
+2. Open the project in Android Studio.
+
+3. Let Android Studio sync the Gradle project.
+
+4. If Android Studio asks for missing SDK components, install them from:
+
+```text
+File > Settings > Languages & Frameworks > Android SDK
+```
+
+5. Make sure the project has a valid SDK path. Android Studio normally creates `local.properties` automatically:
+
+```properties
+sdk.dir=C\:\\Users\\YourName\\AppData\\Local\\Android\\Sdk
+```
+
+Do not commit `local.properties` because it is machine-specific.
+
+## Run the App
+
+### Run from Android Studio
+
+1. Select an emulator or connected Android device.
+2. Click the Run button.
+3. Choose the `app` configuration if Android Studio asks.
+
+### Run from Command Line
+
+Build the debug APK:
+
+```powershell
+.\gradlew.bat clean assembleDebug
+```
+
+Install it on a connected device or running emulator:
+
+```powershell
+.\gradlew.bat installDebug
+```
+
+On macOS or Linux, use:
+
+```bash
+./gradlew clean assembleDebug
+./gradlew installDebug
+```
+
+The generated APK is available at:
+
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+## Run Tests
+
+Run local unit tests:
+
+```powershell
+.\gradlew.bat testDebugUnitTest
+```
+
+On macOS or Linux:
+
+```bash
+./gradlew testDebugUnitTest
+```
+
 Android Security 22770224 is a simple native Android application that demonstrates a registration and sign-in flow backed by a local SQLite database helper. The app is built with Java, AndroidX AppCompat, Material Components, and ConstraintLayout.
 
 ## Features
@@ -21,40 +110,6 @@ Android Security 22770224 is a simple native Android application that demonstrat
 - `app/src/main/res/layout/` - XML layouts for registration, sign-in, and home screens
 - `app/build.gradle.kts` - Android app module configuration
 - `gradle/wrapper/` - Gradle wrapper files
-
-## Requirements
-
-- Android Studio or Android SDK command-line tools
-- JDK 17 or compatible JDK for Android Gradle Plugin 8.1.2
-- Android SDK Platform 34
-
-## Build
-
-Use the Gradle wrapper from the repository root:
-
-```powershell
-.\gradlew.bat clean assembleDebug
-```
-
-On macOS or Linux:
-
-```bash
-./gradlew clean assembleDebug
-```
-
-The debug APK is generated at:
-
-```text
-app/build/outputs/apk/debug/app-debug.apk
-```
-
-## Test
-
-Run the local unit tests with:
-
-```powershell
-.\gradlew.bat testDebugUnitTest
-```
 
 ## Continuous Integration
 

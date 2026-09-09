@@ -43,7 +43,10 @@ artifacts:
     name: app-debug
 
 cache:
-  - C:\Users\appveyor\.gradle
-  - C:\android-sdk\build-tools
-  - C:\android-sdk\cmdline-tools
-  - C:\android-sdk\platforms
+  - C:\Users\appveyor\.gradle\caches -> **\*.gradle, **\*.gradle.kts, gradle.properties
+  - C:\Users\appveyor\.gradle\wrapper -> gradle\wrapper\gradle-wrapper.properties
+  - C:\android-sdk\build-tools -> appveyor.yml
+  - C:\android-sdk\cmdline-tools -> appveyor.yml
+  - C:\android-sdk\licenses -> appveyor.yml
+  - C:\android-sdk\platform-tools -> appveyor.yml
+  - C:\android-sdk\platforms -> appveyor.yml
